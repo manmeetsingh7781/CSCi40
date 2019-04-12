@@ -11,11 +11,9 @@ using namespace std;
 void readBig(int[]);
 void printBig(int[]);
 void addBig(int[], int[], int[]);
-int start;
-
-// This constant should be 100 when the program is finished.
 const int MAX_DIGITS = 100;
-string number;
+// This constant should be 100 when the program is finished.
+
 
 //There should be no changes made to the main program when you turn it in.
 int main()
@@ -54,7 +52,8 @@ void readBig(int arr[])
 	string number;
 	char temp;
   bool Done = false;
-
+  int start;
+  
   // setting each digits in the array to 0
 	for (start = 0; start < MAX_DIGITS; start++)
 		arr[start] = 0;
