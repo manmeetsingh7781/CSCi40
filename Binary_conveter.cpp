@@ -1,5 +1,6 @@
+// Manmeet Singh
 // Binary.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+
 
 #include "pch.h"
 #include <iostream>
@@ -32,7 +33,7 @@ int binary_to_ten(string binary) {
 
 // Take a Decimal Number and converts the Base 2 upto 11
 void base_converter(int digits, int base) {
-	int my_base = digits,  start = 0, answer =  0, remainder = 0, temp = 0;
+	int my_base = digits,  start = 0, answer =  0, remainder = 0, temp = 0, printer;
 	string results[100];
 
 	while (my_base != 0) {
@@ -43,7 +44,7 @@ void base_converter(int digits, int base) {
 		results[start] = remainder + '0';
 		start++;
 	}
-	for (int x = start; x >= 0; x--) {
-		cout << results[x];
+	for (printer = start; printer >= 0; printer--) {
+		cout << results[printer];
 	}
 }
