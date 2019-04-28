@@ -13,7 +13,7 @@ void base_converter(int, int);
 int main()
 {
 	cout << binary_to_ten("101011100") << endl;
-	base_converter(348, 2);
+	base_converter(348, 13);
 	cout << endl;
 	return 0;
 }
@@ -34,17 +34,25 @@ int binary_to_ten(string binary) {
 // Take a Decimal Number and converts the Base 2 upto 11
 void base_converter(int digits, int base) {
 	int my_base = digits,  start = 0, answer =  0, remainder = 0, temp = 0, printer;
-	string results[100];
+	int results[100];
 
 	while (my_base != 0) {
 		temp = my_base;
 		answer = temp /base;
 		remainder = temp % base;
 		my_base /= base;
-		results[start] = remainder + '0';
+		results[start] = static_cast<int>(remainder);
 		start++;
 	}
-	for (printer = start; printer >= 0; printer--) {
-		cout << results[printer];
+	for (printer = start-1; printer >= 0; printer--) {
+		
+		if(base == 13){
+		    if(results[printer] == 10)
+		    	cout<<"A";
+		    else
+			cout << results[printer];
+		}
+		 else
+			cout << results[printer];
 	}
 }
