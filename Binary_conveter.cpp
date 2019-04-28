@@ -7,6 +7,9 @@
 #include <string>
 using namespace std;
 
+// Function Prototypes
+
+// This function takes a decimal number and converts it to another given base by user
 void base_converter(int, int);
 void base_converter(int, int, int);
 unsigned long long int binary_to_decimal(string binary);
@@ -14,7 +17,7 @@ unsigned long long int binary_to_decimal(string binary);
 
 int main()
 {
-	base_converter(1245, 10, 13);
+	base_converter(55, 10, 15);
 	cout << endl;
 	return 0;
 }
@@ -68,7 +71,7 @@ void base_converter(int number, int from_base, int to_base) {
 			answer /= to_base;
 		}
 		for (power = to_placer - 1; power >= 0; power--) {
-			if (to_base == 13) {
+			if (to_base == 13 or to_base == 14 or to_base == 15) {
 				switch (to_results[power]) {
 				case 10:
 					cout << "A";
@@ -79,6 +82,18 @@ void base_converter(int number, int from_base, int to_base) {
 				case 12:
 					cout << "C";
 					break;
+
+				if (to_base == 14) {
+					case 13:
+						cout << "D";
+						break;
+				}
+
+				if (to_base == 15) {
+					case 14:
+						cout << "E";
+						break;
+				}
 				default:
 					cout << to_results[power];
 					break;
