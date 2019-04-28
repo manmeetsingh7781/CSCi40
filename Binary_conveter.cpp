@@ -7,17 +7,14 @@
 #include <string>
 using namespace std;
 
-// Function Prototypes
 
-// This function takes a decimal number and converts it to another given base by user
-void base_converter(int, int);
 void base_converter(int, int, int);
 unsigned long long int binary_to_decimal(string binary);
 
 
 int main()
 {
-	base_converter(55, 10, 15);
+	base_converter(300000000,  10, 15);
 	cout << endl;
 	return 0;
 }
@@ -34,25 +31,6 @@ unsigned long long int binary_to_decimal(string binary) {
 		start--;
 	}
 	return sum;
-}
-
-// Takes a Decimal Number and converts the Base 2 upto 11
-void base_converter(int digits, int base) {
-	if (base > 1 and base < 37) {
-		int my_base = digits, start = 0, printer;
-		int results[100];
-		while (my_base != 0) {
-			results[start] = my_base % base;
-			start++;
-			my_base /= base;
-		}
-		for (printer = start - 1; printer >= 0; printer--) {
-			int digit;
-			digit = results[printer];
-			cout << digit;
-		}
-	}
-	else { cout << "Base Limit has been exceeded, please try between 2 and 36\n" << endl;  exit(-1); }
 }
 
 // This function takes a number and from which base you want to convert the number into new base
