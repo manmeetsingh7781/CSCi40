@@ -73,8 +73,8 @@ void base_converter(string number, int from_base, int to_base) {
 	to_results = new int[SIZE];
 	if (from_base > 1 and from_base < 37 and to_base > 1 and to_base < 37) {
 		while (i > -1) {
-			if (from_base > 10 and number[i] > 10 and getInt(number[i]) < from_base) {
-				cout << getInt(number[i]);
+			if (from_base > 10 and (number[i] - '0') > 10 and getInt((number[i] - '0')) < from_base) {
+				cout << getInt((number[i] - '0'));
 			}
 			else if ((number[i] - '0') < from_base) {
 				to_tenth_sum += static_cast<int>((number[i] - '0') * pow(from_base, from_power++));
