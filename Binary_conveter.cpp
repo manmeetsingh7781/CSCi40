@@ -15,7 +15,7 @@ void base_converter(string, int, int);
 
 int main()
 {
-
+	
 	char response;
 	int from, to;
 	string binary_value, value;
