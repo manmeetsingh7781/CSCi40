@@ -76,6 +76,9 @@ unsigned long long int binary_to_decimal(string binary) {
 
 /*
 From base feature has to be written 
+Binary have 2 digits: 0 and 1
+Octa have 8 digits: 0 1 2 3 4 5 6 7 8
+This means max digit can be Base - 1 
 */
 // This function takes a number and from which base you want to convert the number into new base
 void base_converter(int number, int from_base, int to_base) {
