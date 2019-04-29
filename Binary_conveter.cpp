@@ -1,4 +1,3 @@
-
 // Manmeet Singh
 // Binary.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
@@ -16,10 +15,37 @@ unsigned long long int binary_to_decimal(string binary);
 
 int main()
 {
+	
+	char response;
 	int value, from, to;
-	cout << "Please Enter Number, From Base, and To Base: ";
-	cin >> value >> from >> to;
-	base_converter(value, from, to);
+	string binary_value;
+	bool Done = false;
+	cout << cout.width(20) << "\bWelcome to Binary n Base Conveter\n" << endl;
+	while (not Done) {
+		cout << "A. Change Binary to Decimal.\n";
+		cout << "B. Change Decimal to another Base.\n>";
+		cin >> response;
+		response = toupper(response);
+		if (response == 'A') {
+			cout << "Enter The Number\n>";
+			cin >> binary_value;
+			cout << binary_to_decimal(binary_value) << endl;
+		}
+		else if (response == 'B') {
+			cout << "Please Enter Number, From Base, and To Base.\n>";
+			cin >> value >> from >> to;
+			base_converter(value, from, to);
+			cout << endl;
+		}
+		cout << "Convert Again? Y/N\n>";
+		cin >> response;
+		response = toupper(response);
+		if (response == 'Y') {
+			continue;
+		}
+		else Done = true;
+	}
+	cout << endl;
 	return 0;
 }
 
@@ -48,9 +74,12 @@ unsigned long long int binary_to_decimal(string binary) {
 	return sum;
 }
 
+/*
+From base feature has to be written 
+*/
 // This function takes a number and from which base you want to convert the number into new base
 void base_converter(int number, int from_base, int to_base) {
-	
+
 	if (from_base > 1 and from_base < 37 and to_base > 1 and to_base < 37) {
 		int to_placer = 0, looper = 13, power = 0, answer = 0;
 		int to_results[10];
