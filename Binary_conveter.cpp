@@ -54,12 +54,9 @@ void base_converter(int number, int from_base, int to_base) {
 	if (from_base > 1 and from_base < 37 and to_base > 1 and to_base < 37) {
 		int to_placer = 0, looper = 13, power = 0, answer = 0;
 		int to_results[10];
-		bool printed = false;
-
 		if (from_base != 10) {
 			from_base = 10;
 		}
-
 		while (number != 0) {
 			answer += static_cast<int>(number % 10 * pow(from_base, power++));
 			number /= 10;
