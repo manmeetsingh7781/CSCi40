@@ -10,15 +10,28 @@ using namespace std;
 
 void base_converter(int, int, int);
 unsigned long long int binary_to_decimal(string binary);
-
+void getChar(int, int);
 
 int main()
 {
-	base_converter(300000000,  10, 15);
-	cout << endl;
+	int value, from, to;
+	cout << "Please Enter Number, From Base, and To Base: ";
+	cin >> value >> from >> to;
+	base_converter(value,  from, to);
 	return 0;
 }
 
+// This function returns the Alphabetic characters based on Base number
+void getChar(int digit, int base) {
+	char letter;
+	if (digit > 9 and digit < 36) {
+		letter = digit+55;
+		cout << letter;
+		return;
+	}
+	cout << digit;
+	return;
+}
 // Takes a Binary and convert it into the decimal
 unsigned long long int binary_to_decimal(string binary) {
 	string digits = binary;
@@ -37,11 +50,11 @@ unsigned long long int binary_to_decimal(string binary) {
 void base_converter(int number, int from_base, int to_base) {
 
 	if (from_base > 1 and from_base < 37 and to_base > 1 and to_base < 37) {
-		int to_placer = 0, power = 0, answer = 0;
+		int to_placer = 0, looper = 13, power = 0, answer = 0;
 		int to_results[10];
-
+		bool printed = false;
 		while (number != 0) {
-			answer += static_cast<int>(number % 10 * pow(from_base, power++));;
+			answer += static_cast<int>(number % 10 * pow(from_base, power++));
 			number /= 10;
 		}
 		while (answer != 0) {
@@ -49,34 +62,10 @@ void base_converter(int number, int from_base, int to_base) {
 			answer /= to_base;
 		}
 		for (power = to_placer - 1; power >= 0; power--) {
-			if (to_base == 13 or to_base == 14 or to_base == 15) {
-				switch (to_results[power]) {
-				case 10:
-					cout << "A";
-					break;
-				case 11:
-					cout << "B";
-					break;
-				case 12:
-					cout << "C";
-					break;
-
-				if (to_base == 14) {
-					case 13:
-						cout << "D";
-						break;
-				}
-
-				if (to_base == 15) {
-					case 14:
-						cout << "E";
-						break;
-				}
-				default:
-					cout << to_results[power];
-					break;
-				}
-			}
+			
+			if (to_base > 12) 
+				getChar(to_results[power], to_base);
+			else cout << to_results[power];
 		}
 	}
 	else { cout << "Base Limit has been exceeded, please try between 2 and 36\n" << endl;  exit(-1); }
