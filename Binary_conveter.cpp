@@ -1,3 +1,4 @@
+
 // Manmeet Singh
 // Binary.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
@@ -7,17 +8,18 @@
 #include <string>
 using namespace std;
 
-
+// Function Prototypes
+void getChar(int, int);
 void base_converter(int, int, int);
 unsigned long long int binary_to_decimal(string binary);
-void getChar(int, int);
+
 
 int main()
 {
 	int value, from, to;
 	cout << "Please Enter Number, From Base, and To Base: ";
 	cin >> value >> from >> to;
-	base_converter(value,  from, to);
+	base_converter(value, from, to);
 	return 0;
 }
 
@@ -25,7 +27,7 @@ int main()
 void getChar(int digit, int base) {
 	char letter;
 	if (digit > 9 and digit < 36) {
-		letter = digit+55;
+		letter = digit + 55;
 		cout << letter;
 		return;
 	}
@@ -35,8 +37,8 @@ void getChar(int digit, int base) {
 // Takes a Binary and convert it into the decimal
 unsigned long long int binary_to_decimal(string binary) {
 	string digits = binary;
-	int start = digits.length()-1, each_number = 0, temper = 0, power = 0;
-	unsigned long long int sum = 0; 
+	int start = digits.length() - 1, each_number = 0, temper = 0, power = 0;
+	unsigned long long int sum = 0;
 	while (start >= 0) {
 		each_number = static_cast<int>(digits[start] - '0');
 		temper = static_cast<int>(each_number * pow(2, power++));
@@ -48,11 +50,16 @@ unsigned long long int binary_to_decimal(string binary) {
 
 // This function takes a number and from which base you want to convert the number into new base
 void base_converter(int number, int from_base, int to_base) {
-
+	
 	if (from_base > 1 and from_base < 37 and to_base > 1 and to_base < 37) {
 		int to_placer = 0, looper = 13, power = 0, answer = 0;
 		int to_results[10];
 		bool printed = false;
+
+		if (from_base != 10) {
+			from_base = 10;
+		}
+
 		while (number != 0) {
 			answer += static_cast<int>(number % 10 * pow(from_base, power++));
 			number /= 10;
@@ -62,8 +69,7 @@ void base_converter(int number, int from_base, int to_base) {
 			answer /= to_base;
 		}
 		for (power = to_placer - 1; power >= 0; power--) {
-			
-			if (to_base > 12) 
+			if (to_base > 12)
 				getChar(to_results[power], to_base);
 			else cout << to_results[power];
 		}
