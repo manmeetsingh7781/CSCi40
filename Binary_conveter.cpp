@@ -9,13 +9,13 @@ using namespace std;
 
 // Function Prototypes
 void getChar(int, int);
-void base_converter(int, int, int);
+void base_converter(string, int, int);
 unsigned long long int binary_to_decimal(string binary);
 
 
 int main()
 {
-	
+
 	char response;
 	int value, from, to;
 	string binary_value;
@@ -33,8 +33,8 @@ int main()
 		}
 		else if (response == 'B') {
 			cout << "Please Enter Number, From Base, and To Base.\n>";
-			cin >> value >> from >> to;
-			base_converter(value, from, to);
+			//cin >> value >> from >> to;
+			base_converter("0123456789101112131415", from, to);
 			cout << endl;
 		}
 		cout << "Convert Again? Y/N\n>";
@@ -75,14 +75,25 @@ unsigned long long int binary_to_decimal(string binary) {
 }
 
 /*
-From base feature has to be written 
+From base feature has to be written
 Binary have 2 digits: 0 and 1
 Octa have 8 digits: 0 1 2 3 4 5 6 7 8
-This means max digit can be Base - 1 
+This means max digit can be Base - 1
 */
 // This function takes a number and from which base you want to convert the number into new base
-void base_converter(int number, int from_base, int to_base) {
+void base_converter(string number, int from_base, int to_base) {
 
+	int *digits = NULL;
+	const int SIZE = number.length();
+	digits = new int[SIZE];
+	int i = 0;
+	while (i != SIZE) {
+		digits[i] = number[i] - '0';
+		cout << digits[i];
+		i++;
+	}
+
+	/*
 	if (from_base > 1 and from_base < 37 and to_base > 1 and to_base < 37) {
 		int to_placer = 0, looper = 13, power = 0, answer = 0;
 		int to_results[10];
@@ -104,4 +115,5 @@ void base_converter(int number, int from_base, int to_base) {
 		}
 	}
 	else { cout << "Base Limit has been exceeded, please try between 2 and 36\n" << endl;  exit(-1); }
+	*/
 }
