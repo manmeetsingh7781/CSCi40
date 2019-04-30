@@ -1,7 +1,7 @@
 // Manmeet Singh
 // Binary.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
-#include "pch.h"
+#include "stdafx.h"
 #include <iostream>
 #include <cmath>
 #include <string>
@@ -12,39 +12,15 @@ void start_conveter();
 void getChar(int);
 int getInt(char);
 void base_converter(string, int, int);
-
-// for table values
 void create_table(int, int);
 
 
-int main(){
-	create_table(0, 0);
+int main() {
+	// This is the main thread for binary conveter
+	start_conveter();
+	cin.get();
 	cout << endl;
- 	return 0;
-}
-
-// Takes X and Y values up to given by user and Creates a table in given base
-void create_table(int x, int y) {
-	string digits;
-	int one, two, base;
-	char type;
-	cout << "Enter the Type of Arithmetic you wants to do with two numbers\nA. Add (+).\nB. Multiply (*).\n";
-	cin >> type;
-	type = tolower(type);
-	if (type == 'a' or type == '+') {	
-		cout << "Enter X, Y Values to Add"  << endl;
-		cin >> one >> two;
-		digits = to_string(one + two);
-	}
-	else if (type == 'b' or type == '*') {
-		cout << "Enter X, Y Values to Multiply" << endl;
-		cin >> one >> two;
-		digits = to_string(one * two);
-	}
-	else return;
-	cout << "Enter the Base you would like to convert values into\n>";
-	cin >> base;
-	base_converter(digits, base, 10);
+	return 0;
 }
 
 
@@ -56,11 +32,21 @@ void start_conveter() {
 	bool Done = false;
 	cout << cout.width(20) << "\bWelcome to Binary n Base Conveter\n" << endl;
 	while (not Done) {
-		cout << cout.width(20) << "\bChange One Base to Another Base.\n\n";
-		cout << "Please Enter Number, From Base, and To Base.\n>";
-		cin >> value >> from >> to;
-		base_converter(value, from, to);
-		cout << endl;
+		cout << "A. To Create A Table.\n";
+		cout << "B. To Change One Base to Another Base.\n>";
+		cin >> response;
+		response = tolower(response);
+		if(response == 'b'){
+			cout << "Please Enter Number, From Base, and To Base.\n>";
+			cin >> value >> from >> to;
+			base_converter(value, from, to);
+			cout << endl;
+		}
+		else if (response == 'a') {
+			cout << "Enter number up to X and Y\n>";
+			cin >> from >> to;
+			create_table(from, to);
+		}
 		cout << "Convert Again? Y/N\n>";
 		cin >> response;
 		response = toupper(response);
@@ -69,6 +55,28 @@ void start_conveter() {
 		}
 		else Done = true;
 	}
+}
+
+
+// Takes X and Y values up to given by user and Creates a table in given base
+void create_table(int x, int y) {
+	string digits;
+	int base;
+	char type;
+	cout << "Enter the Type of Arithmetic you wants to do with two numbers\nA. Add (+).\nB. Multiply (*).\n";
+	cin >> type;
+	type = tolower(type);
+	if (type == 'a' or type == '+') {
+		digits = to_string(x + y);
+	}
+	else if (type == 'b' or type == '*') {
+		cout << "Enter X, Y Values to Multiply" << endl;
+		digits = to_string(x * y);
+	}
+	else return;
+	cout << "Enter the Base you would like to convert values into\n>";
+	cin >> base;
+	base_converter(digits, base, 10);
 }
 
 // This function returns the Alphabetic characters based on Base number
@@ -93,12 +101,6 @@ int getInt(char letter) {
 	return letter;
 }
 
-/*
-From base feature has to be written
-Binary have 2 digits: 0 and 1
-Octa have 8 digits: 0 1 2 3 4 5 6 7 8
-This means max digit can be Base - 1
-*/
 // This function takes a number and from which base you want to convert the number into new base
 void base_converter(string number, int from_base, int to_base) {
 	int *to_results = NULL;
