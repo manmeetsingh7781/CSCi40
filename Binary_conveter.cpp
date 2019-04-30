@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <sstream>
+
 using namespace std;
 
 // function Prototypes
@@ -15,30 +17,32 @@ void base_converter(string, int, int);
 
 
 // For table
-void createTable(int, int, int);
+void createTable(string, string, int);
 
-int main()
-{
-	createTable(8, 5, 4);
+
+
+int main(){
+	createTable("10", "10", 4);
 	cout << endl;
-	return 0;
+ 	return 0;
 }
 
-// This prototype function creates the table
-void createTable(int x, int y, int base) {
-	int result = 0, temper = 0, carry = 0;
-	result = x + y;
-	while (result >= base and result >= 0) {
-		result -= base;
-		carry++;
-	}
-	if (carry >= base) {
-		while (carry >= base) {
-			carry -= base;
-			temper++;
-		}
-		cout << temper << carry << result;
-	}else cout << carry << result;
+
+void createTable(string x, string y, int base) {
+	int inner_x = 0, inner_y = 0, result;
+	istringstream one(x);
+	istringstream two(y);
+	
+	one >> inner_x;
+	two >> inner_y;
+
+	result = inner_x + inner_y;
+	istringstream final_result(66);
+	string digits;
+	final_result >> digits;
+	cout << digits << endl;
+	
+
 }
 
 // This function is the main thread 
@@ -95,7 +99,7 @@ This means max digit can be Base - 1
 // This function takes a number and from which base you want to convert the number into new base
 void base_converter(string number, int from_base, int to_base) {
 	int *to_results = NULL;
-	int SIZE = number.length() - 1, i = SIZE, from_power = 0, to_tenth_sum = 0, to_tenth_remainders = 0, to_placer = 0, looper = 13, power = 0, answer = 0;
+	int SIZE = number.length() - 1, i = SIZE, from_power = 0, to_tenth_sum = 0, to_placer = 0, power = 0;
 	to_results = new int[SIZE];
 	if (from_base > 1 and from_base < 37 and to_base > 1 and to_base < 37) {
 		while (i > -1) {
