@@ -36,7 +36,7 @@ void start_conveter() {
 		cout << "B. To Change One Base to Another Base.\n>";
 		cin >> response;
 		response = tolower(response);
-		if(response == 'b'){
+		if (response == 'b') {
 			cout << "Please Enter Number, From Base, and To Base.\n>";
 			cin >> value >> from >> to;
 			base_converter(value, from, to);
@@ -47,7 +47,7 @@ void start_conveter() {
 			cin >> from >> to;
 			create_table(from, to);
 		}
-		cout << "Convert Again? Y/N\n>";
+		cout << "\nConvert Again? Y/N\n>";
 		cin >> response;
 		response = toupper(response);
 		if (response == 'Y') {
@@ -76,7 +76,7 @@ void create_table(int x, int y) {
 	else return;
 	cout << "Enter the Base you would like to convert values into\n>";
 	cin >> base;
-	base_converter(digits, base, 10);
+	base_converter(digits, 10, base);
 }
 
 // This function returns the Alphabetic characters based on Base number
