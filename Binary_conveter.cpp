@@ -8,21 +8,46 @@
 using namespace std;
 
 // function Prototypes
+void start_conveter();
 void getChar(int);
 int getInt(char);
 void base_converter(string, int, int);
 
 
+// For table
+void createTable(int, int, int, int);
+
 int main()
 {
-	
+	createTable(0, 5, 4, 0);
+	cout << endl;
+	return 0;
+}
+
+// This prototype function creates the table
+void createTable(int x, int y, int base, int carry) {
+	int result = 0, temper = 0;
+	result = x + y;
+	while (result >= base and result >= 0) {
+		result -= base;
+		carry++;
+	}
+	while (carry >= base) {
+		carry -= base;
+		temper++;
+	}
+	cout << temper << carry << result;
+
+}
+
+void start_conveter() {
 	char response;
 	int from, to;
 	string binary_value, value;
 	bool Done = false;
 	cout << cout.width(20) << "\bWelcome to Binary n Base Conveter\n" << endl;
 	while (not Done) {
-		cout << cout.width(20)<< "\bChange One Base to Another Base.\n\n";
+		cout << cout.width(20) << "\bChange One Base to Another Base.\n\n";
 		cout << "Please Enter Number, From Base, and To Base.\n>";
 		cin >> value >> from >> to;
 		base_converter(value, from, to);
@@ -35,8 +60,6 @@ int main()
 		}
 		else Done = true;
 	}
-	cout << endl;
-	return 0;
 }
 
 // This function returns the Alphabetic characters based on Base number
@@ -51,6 +74,7 @@ void getChar(int digit) {
 	return;
 }
 
+// This function takes alphabet letter and return the digits
 int getInt(char letter) {
 	int number;
 	if (letter >= 'A' and letter <= 'Z') {
