@@ -5,8 +5,6 @@
 #include <iostream>
 #include <cmath>
 #include <string>
-#include <sstream>
-
 using namespace std;
 
 // function Prototypes
@@ -15,35 +13,40 @@ void getChar(int);
 int getInt(char);
 void base_converter(string, int, int);
 
-
-// For table
-void createTable(string, string, int);
-
+// for table values
+void create_table(int, int);
 
 
 int main(){
-	createTable("10", "10", 4);
+	create_table(0, 0);
 	cout << endl;
  	return 0;
 }
 
-
-void createTable(string x, string y, int base) {
-	int inner_x = 0, inner_y = 0, result;
-	istringstream one(x);
-	istringstream two(y);
-	
-	one >> inner_x;
-	two >> inner_y;
-
-	result = inner_x + inner_y;
-	istringstream final_result(66);
+// Takes X and Y values up to given by user and Creates a table in given base
+void create_table(int x, int y) {
 	string digits;
-	final_result >> digits;
-	cout << digits << endl;
-	
-
+	int one, two, base;
+	char type;
+	cout << "Enter the Type of Arithmetic you wants to do with two numbers\nA. Add (+).\nB. Multiply (*).\n";
+	cin >> type;
+	type = tolower(type);
+	if (type == 'a' or type == '+') {	
+		cout << "Enter X, Y Values to Add"  << endl;
+		cin >> one >> two;
+		digits = to_string(one + two);
+	}
+	else if (type == 'b' or type == '*') {
+		cout << "Enter X, Y Values to Multiply" << endl;
+		cin >> one >> two;
+		digits = to_string(one * two);
+	}
+	else return;
+	cout << "Enter the Base you would like to convert values into\n>";
+	cin >> base;
+	base_converter(digits, base, 10);
 }
+
 
 // This function is the main thread 
 void start_conveter() {
