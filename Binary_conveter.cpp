@@ -15,31 +15,33 @@ void base_converter(string, int, int);
 
 
 // For table
-void createTable(int, int, int, int);
+void createTable(int, int, int);
 
 int main()
 {
-	createTable(0, 5, 4, 0);
+	createTable(8, 5, 4);
 	cout << endl;
 	return 0;
 }
 
 // This prototype function creates the table
-void createTable(int x, int y, int base, int carry) {
-	int result = 0, temper = 0;
+void createTable(int x, int y, int base) {
+	int result = 0, temper = 0, carry = 0;
 	result = x + y;
 	while (result >= base and result >= 0) {
 		result -= base;
 		carry++;
 	}
-	while (carry >= base) {
-		carry -= base;
-		temper++;
-	}
-	cout << temper << carry << result;
-
+	if (carry >= base) {
+		while (carry >= base) {
+			carry -= base;
+			temper++;
+		}
+		cout << temper << carry << result;
+	}else cout << carry << result;
 }
 
+// This function is the main thread 
 void start_conveter() {
 	char response;
 	int from, to;
