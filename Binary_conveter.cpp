@@ -30,7 +30,7 @@ void start_conveter() {
 	int from, to;
 	string binary_value, value;
 	bool Done = false;
-	cout << cout.width(20) << "\bWelcome to Binary n Base Conveter\n" << endl;
+	cout << cout.width(30) << "\bWelcome to Binary and Base Conveter\n" << endl;
 	while (not Done) {
 		cout << "A. To Create A Table.\n";
 		cout << "B. To Change One Base to Another Base.\n>";
