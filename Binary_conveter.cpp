@@ -12,7 +12,7 @@ void start_conveter();
 void getChar(int);
 int getInt(char);
 void base_converter(string, int, int);
-void create_table(int, int);
+void create_table();
 
 
 int main() {
@@ -27,11 +27,11 @@ int main() {
 // This function is the main thread 
 void start_conveter() {
 	char response;
-	int from, to;
-	string binary_value, value;
 	bool Done = false;
 	cout << cout.width(30) << "\bWelcome to Binary and Base Conveter\n" << endl;
 	while (not Done) {
+		int from, to;
+		string binary_value, value;
 		cout << "A. To Create A Table.\n";
 		cout << "B. To Change One Base to Another Base.\n>";
 		cin >> response;
@@ -43,9 +43,7 @@ void start_conveter() {
 			cout << endl;
 		}
 		else if (response == 'a') {
-			cout << "Enter number up to X and Y\n>";
-			cin >> from >> to;
-			create_table(from, to);
+			create_table();
 		}
 		cout << "\nConvert Again? Y/N\n>";
 		cin >> response;
@@ -59,24 +57,35 @@ void start_conveter() {
 
 
 // Takes X and Y values up to given by user and Creates a table in given base
-void create_table(int x, int y) {
-	string digits;
-	int base;
+void create_table() {
+	int from, to, base;
 	char type;
+	string digits;
+	cout << "From >";
+	cin >> from;
+	cout << "To >";
+	cin >> to;
+	cout << "Enter the Base you would like to convert values into\n>";
+	cin >> base;
 	cout << "Enter the Type of Arithmetic you wants to do with two numbers\nA. Add (+).\nB. Multiply (*).\n";
 	cin >> type;
 	type = tolower(type);
 	if (type == 'a' or type == '+') {
-		digits = to_string(x + y);
+		while (from != to) {
+			cout << from << " + " << from << " = ";
+			base_converter(to_string(from + from), 10, base);
+			cout << endl;
+			from++;
+		}
 	}
 	else if (type == 'b' or type == '*') {
-		cout << "Enter X, Y Values to Multiply" << endl;
-		digits = to_string(x * y);
+		while (from != to) {
+			cout << from << " * " << from << " = ";
+			base_converter(to_string(from * from), 10, base);
+			cout << endl;
+			from++;
+		}
 	}
-	else return;
-	cout << "Enter the Base you would like to convert values into\n>";
-	cin >> base;
-	base_converter(digits, 10, base);
 }
 
 // This function returns the Alphabetic characters based on Base number
