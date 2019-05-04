@@ -1,66 +1,43 @@
 // Manmeet Singh
-/*
-
-This program creates a linked list of 26 nodes or more depending on user and then fill the list with the letters of the alphabet, and then prints the contents of the
-linked list.
-
-*/
+// This program creates a linked list connected to each other as a node which is the part of data structure
 
 #include <iostream>
 using namespace std;
 
-// Node Structure 
+// This data type represents the Node 
 struct Node {
-
 	char data;
-	Node * Next;
-
+	Node* next;
 };
 
-// Linked List Structure so we can add Multiple nodes in One list instead of creating new Node every time
-struct linkedList {
-	Node *start, *currunt;
+int main() { 
+  int start;
+	char letter = 'A';
+  // Initilize the List
+  Node *head = new Node();
+ Node *new_node, *currunt;
 
-	// Constructor for setting up the list.. Run only once when object created
-	linkedList() {
-		start = new Node;
-		currunt = start;
+// Adding new Node
+for(start = 1; start <= 26; start++){
+     new_node = new Node();
+     new_node->next = head;
+     head = new_node;
+ }
+
+  // loop to add values in nodes
+  currunt = head;
+	while(currunt != NULL) {
+    currunt->data = letter;
+    letter++;
+   currunt = currunt->next;
 	}
-
-	// function to add nodes into one List
-	void addNode(char value) {
-		currunt->Next = new Node;
-		currunt = currunt->Next;
-		currunt->data = value;
-		currunt->Next = NULL;  
+ 
+ // Loop to print 
+	currunt = head;
+	while(currunt != NULL) {
+		cout << currunt->data << endl;
+		currunt = currunt->next;
 	}
-
-	// Display all the nodes
-	void displaynodes() {
-		start = start->Next;
-		 while(start != NULL){
-		   cout << start->data << endl;
-		   start = start -> Next;
-		 }
-	}
-
-};
-
-int main() {
-	
-	int starter, nodeLimit;
-	
-	nodeLimit = 26;
-	char letter;
-	// @ because next letter is A so when we start the loop the next letter will be A
-	letter = '@';
-	
-	linkedList list;
-	for (starter = 0; starter <= nodeLimit; starter++) {
-		letter = letter + 1;
-		list.addNode(letter);
-	}
-	list.displaynodes();
-
-	return 0;
+	cout << endl;
+  return 0;
 }
