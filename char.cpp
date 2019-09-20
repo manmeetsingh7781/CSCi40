@@ -2,7 +2,7 @@
 using namespace std;
 
 // function prototype
-int getSum(int);
+char getKeyword(int);
 
 int main()
 {
@@ -14,16 +14,14 @@ int main()
   
   cin >> user_input;
   
-  letter = 'A' + getSum(user_input) % 26;
-  
-  cout <<  user_input << " " << letter << endl;
+  cout <<  user_input << " " << getKeyword(user_input) << endl;
   
   return 0;
 }
 
 
 // Getting the sum of all the values of user input 
-int getSum(int user_value){
+char getKeyword(int user_value){
     
     
   int a, b, c, d, a_result, b_result, c_result, d_result, sum;
@@ -41,14 +39,10 @@ int getSum(int user_value){
   b_result = b % 100;
   c_result = c % 100;
   d_result = d % 100;
-  
-
-   
-  // Adding up the sums together
+ 
   sum = a_result + b_result + c_result + d_result;
-  return sum;
+  return 'A' + sum % 26;
 }
-
 
 
 
